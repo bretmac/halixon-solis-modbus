@@ -54,7 +54,7 @@ Inverter Time Setter|The device synchrises its time from an internet time server
 Sensor MQTT Output
 Client Eavesdropper
 Diagnostics MQTT Output|
-MQTT Autodiscovery|
+MQTT Autodiscovery|Autoconfigure Sensors in Home Assistant|Planned for V2.0
 
 ## Some Home Assistant Dashboards
 
