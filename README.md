@@ -57,6 +57,7 @@ Diagnostics MQTT Output|
 Over-the-Air Firmware Updates|The device retrieves new firmware versions from an internet server.|Proof of concept complete.<br><br>Requires Configuration front-end.<br><br>Required for V1.0
 MQTT Autodiscovery|Autoconfigure Sensors in Home Assistant|Planned for V2.0
 Backup Wi-Fi|If Wi-Fi #1 fails connect to Wi-Fi #2|Planned for V2.0
+Modbus TCP Server|Allow clients to sent commands to the server bus via Modbus TCP|Needs some research.  This would be a great feature to allow inverter configuration.
 
 ## Some Home Assistant Dashboards
 
