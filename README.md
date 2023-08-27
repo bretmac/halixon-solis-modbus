@@ -51,6 +51,11 @@ It has to grow a little larger, of course, in order to accomodate holes for moun
 
 ![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/f13c9e1e-b10f-4937-84f1-ec0e4db0a6b9)
 
+![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/999cf053-e936-4011-abbc-5887a81cffcd)
+
+![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/44ea2ccc-f743-4f4e-be24-03ad1a887011)
+
+
 The logger itself has a rich set of diagnostics data:
 
 ![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/3e173829-5933-4615-9041-bc07f55b4fda)
