@@ -53,7 +53,7 @@ Modbus Filter V1|The S3 data logger requires a lot of modbus time every five min
 Inverter Time Setter|The device synchrises its time from an internet time server.  Inverter time drift is checked and corrected as required.|90% Complete.<br><br>Required Configuration component to specify time server and time zone.<br><br>Requires further logic to detect transition to and from Daylight Savings Time to correct the inverter's time straight away.
 Sensor MQTT Output|The device constists of an internal logger that requests data from the inverter and produces a JSON output and publishes to an MQTT broker.|80% Complete<br><br>Requires Configuration front-end.<br><br>Requires some further analysis to break out sensor groups into their own topics; for example many systems will not require three phase data, and not all systems have batteries.
 Client Eavesdropper
-Diagnostics MQTT Output|
+Diagnostics MQTT Output|The device produces lots of diagnostic data at a configurable interval (see dashboard below). The data is published as JSON to the MQTT broker.|90% Complete.<br><br>Requires Configuration front-end.
 Over-the-Air Firmware Updates|The device retrieves new firmware versions from an internet server.|Proof of concept complete.<br><br>Requires Configuration front-end.<br><br>Required for V1.0
 MQTT Autodiscovery|Autoconfigure Sensors in Home Assistant|Planned for V2.0
 Backup Wi-Fi|If Wi-Fi #1 fails connect to Wi-Fi #2|Planned for V2.0
