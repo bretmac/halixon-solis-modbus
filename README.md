@@ -45,3 +45,13 @@ It has to grow a little larger, of course, in order to accomodate holes for moun
 
 ## Some Home Assistant Dashboards
 
+![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/88bc1e2e-1869-4257-a952-f50e442fe143)
+
+![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/40d064ba-f5d9-4137-9d57-fc75ebe5cbee)
+
+![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/f13c9e1e-b10f-4937-84f1-ec0e4db0a6b9)
+
+The logger itself has a rich set of diagnostics data:
+
+![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/3e173829-5933-4615-9041-bc07f55b4fda)
+
