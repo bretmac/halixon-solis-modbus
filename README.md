@@ -34,7 +34,7 @@ It has to grow a little larger, of course, in order to accomodate holes for moun
 
 - Sends JSON sensor data to Home Assistant via its MQTT Broker.
 
-- Any potential Cloud security issues dissapear - you can enjoy local telemety without exposing your system to the internet.
+- Any potential Cloud security issues disappear - you can enjoy local telemety without exposing your system to the internet.
 
 - Over-the-Air firmware updates.  No need to reflash with your computer.
 
