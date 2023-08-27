@@ -51,7 +51,7 @@ Modbus Server Interface|
 Modbus Switch|The modbus switch allows multiple clients to access the server-side modbus.  This allows, for example, an S3 Wi-Fi stick to access the inverter and also the internal firmware to access the inverter.|Completed
 Modbus Filter V1|The S3 data logger requires a lot of modbus time every five minutes as it scans for server IDs 1 thru 10.  This causes an unwanted blocking effect on the internal logger.  This component filters out invalid requests and requests for server IDs not equal to one.|  This component requires the configuration interface, but is otherwise complete.
 Inverter Time Setter|The device synchrises its time from an internet time server.  Inverter time drift is checked and corrected as required.|90% Complete.<br><br>Required Configuration component to specify time server and time zone.<br><br>Requires further logic to detect transition to and from Daylight Savings Time to correct the inverter's time straight away.
-Sensor MQTT Output
+Sensor MQTT Output|The device constists of an internal logger that requests data from the inverter and produces a JSON output and publishes to an MQTT broker.|80% Complete<br><br>Requires Configuration front-end.<br><br>Requires some further analysis to break out sensor groups into their own topics; for example many systems will not require three phase data, and not all systems have batteries.
 Client Eavesdropper
 Diagnostics MQTT Output|
 Over-the-Air Firmware Updates|The device retrieves new firmware versions from an internet server.|Proof of concept complete.<br><br>Requires Configuration front-end.<br><br>Required for V1.0
