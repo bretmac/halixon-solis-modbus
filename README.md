@@ -42,6 +42,19 @@ It has to grow a little larger, of course, in order to accomodate holes for moun
 ## Features and Roadmap
 
 
+Feature|Description|Status
+---|---|---
+Configuration|The device provides a responsive Single Page Web Application written in React for device configuration.|Planned.<br><br>Proof of concept completed.<br><br>Required for V1.0
+Initial Setup|Upon first boot, factory reset, or pressing the configuration button within 10 seconds of startup the device will configure itself as an Access Point.  You can then connect with your phone or PC to use the web configurator.|Planned.<br><br>Proof of concept completed.<br><br>Required for V1.0
+Modbus Client Interface|
+Modbus Server Interface|
+Modbus Switch|The modbus switch allows multiple clients to access the server-side modbus.  This allows, for example, an S3 Wi-Fi stick to access the inverter and also the internal firmware to access the inverter.|Completed
+Modbus Filter V1|The S3 data logger requires a lot of modbus time every five minutes as it scans for server IDs 1 thru 10.  This causes an unwanted blocking effect on the internal logger.  This component filters out invalid requests and requests for server IDs not equal to one.|  This component requires the configuration interface, but is otherwise complete.
+Inverter Time Setter|The device synchrises its time from an internet time server.  Inverter time drift is checked and corrected as required.|90% Complete.<br><br>Required Configuration component to specify time server and time zone.<br><br>Requires further logic to detect transition to and from Daylight Savings Time to correct the inverter's time straight away.
+Sensor MQTT Output
+Client Eavesdropper
+Diagnostics MQTT Output|
+MQTT Autodiscovery|
 
 ## Some Home Assistant Dashboards
 
