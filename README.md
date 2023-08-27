@@ -1,7 +1,47 @@
-# Halixon Solis Modbus Data Logger
+# Halixon Solis Modbus Data Logger - Introducing the HAL-100
 
 A data logger for the Solis Inverter that allows you to send data to Home Assistant via MQTT for realtime monitoring whilst keeping your existing data logger for remote configuration and SolisCloud.
 
 See the [Wiki](https://github.com/bretmac/halixon-solis-modbus/wiki) and take part in the [Discussions](https://github.com/bretmac/halixon-solis-modbus/discussions).  Your feedback is appreciated.
 
 ![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/86cea2ff-dac8-430c-b084-92027842754d)
+
+## Why the HAL-100?
+
+There are numerous Solis Data Logger projects out there, so why choose the HAL-100?
+
+Here are a few key features to whet your appetite:
+
+- It's a single board solution.  No fragile connections.  No masses of wires.  Plug in a data cable, a Micro USB Power Supply and that's it.  Really.
+
+- The prototype PCB is tiny:
+  
+![PXL_20230827_132815711](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/e72f43f9-5c7e-43f8-82d5-1380596a6228)
+
+It has to grow a little larger, of course, in order to accomodate holes for mounting into an enclosure, for example.  However, the board pictured above is a fully functional prototype (*see Features and Roadmap) and can be used as-is.
+
+- The HAL-100 aims to be simple to install, setup and configure.
+
+- It is tested!  Development has had a strong focus on unit testing.
+
+- It is low power.   The device only consumes around 1W of power.
+
+- You choose the data polling interval.  Say goodbye to the SolisCloud **five minute** updates.  The prototype is sending sensor data every five **seconds**.
+
+- Automatic Inverter time setting.  Never set your inverter time again!
+
+- Seemlessly works with SolisCloud and Solis logger, if you wish.
+
+- Sends JSON sensor data to Home Assistant via its MQTT Broker.
+
+- Any potential Cloud security issues dissapear - you can enjoy local telemety without exposing your system to the internet.
+
+- Over-the-Air firmware updates.  No need to reflash with your computer.
+
+ 
+## Features and Roadmap
+
+
+
+## Some Home Assistant Dashboards
+
