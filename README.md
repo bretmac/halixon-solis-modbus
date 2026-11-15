@@ -42,13 +42,22 @@ It has to grow a little larger, of course, in order to accomodate holes for moun
 
 ## Setting up the HAL-100
 
-On first power-up the HAL-100 has no Wi-Fi details, so it starts its own Wi-Fi network called `HAL100-<serial number>`.  Join it with the setup key supplied with the device, then open `http://192.168.4.1/` in a browser.  The setup page asks for:
+On first power-up the HAL-100 has no Wi-Fi details, so it starts its own Wi-Fi network called `HAL100-<serial number>`.  Join it with the setup key supplied with the device, then open `http://192.168.4.1/` in a browser.
+
+If you are using a phone:
+
+- **Turn off mobile data while you set the device up.**  The HAL-100's setup network has no internet connection, so many phones quietly send web pages over mobile data instead and the setup page never loads.  Alternatively, when the phone warns that the network has no internet, choose "Stay connected" or "Use this network anyway".
+- **Type the whole address, including `http://`.**  Some browsers try `https://` first, and the page then never loads.
+
+The setup page asks for:
 
 - your Wi-Fi network name and password
 - automatic (DHCP) or a fixed IP address
 - an administrator password, used to log in to the device later
 
 Save, and the device restarts and joins your network.  To get back to the setup page later, for example after changing your Wi-Fi password or forgetting the administrator password, press the boot button within 10 seconds of powering the device on.  Your other settings are kept.
+
+To start again from scratch, use "Restore factory defaults" on the setup page or on the settings page.  It erases every setting and the administrator password, and the device returns to first-boot setup.
 
 ## The web interface
 
@@ -72,8 +81,10 @@ MQTT | Broker address, user name, password, quality of service and retain, plus 
 Time | Time server, time zone, and whether the HAL-100 keeps the inverter clock correct
 Inverter polling | How often the inverter is read, and the MQTT topic for the readings
 Modbus filter | Which inverter (Modbus server id) the data logger may talk to
+Change administrator password | A new administrator password (the current one is needed)
+Restore factory defaults | Erase every setting and return to first-boot setup.  You must type `RESET` and enter the administrator password first.
 
-Saved passwords are never shown again; the page only says whether one is set.  Saving restarts the device so every change takes effect.
+Saved passwords are never shown again; the page only says whether one is set.  Saving restarts the device so every change takes effect.  After five wrong passwords in a row, logins are refused for a while.
 
 <details>
 <summary>All the settings panels</summary>
@@ -100,6 +111,8 @@ Saved passwords are never shown again; the page only says whether one is set.  S
 </p>
 <p align="center">
   <img src="screenshots/panel-change-password.png" alt="Change administrator password panel" width="45%">
+  &nbsp;
+  <img src="screenshots/panel-restore-factory-defaults.png" alt="Restore factory defaults panel, with the button disabled until RESET is typed" width="45%">
 </p>
 
 </details>
@@ -120,13 +133,13 @@ Saved passwords are never shown again; the page only says whether one is set.  S
 
 Feature|Description|Status
 ---|---|---
-Configuration|A small, responsive web page built into the device, used from a phone or PC.  Log in with the administrator password to change any setting (see [The web interface](#the-web-interface)).  Plain HTML, CSS and JavaScript with no external dependencies.|Implemented, in testing.<br><br>Required for V1.0
-Initial Setup|On first boot, or when the boot button is pressed within 10 seconds of startup, the device starts its own Wi-Fi access point.  Connect with your phone or PC to enter the Wi-Fi details, a fixed IP address if you want one, and the administrator password.|Implemented, in testing.<br><br>Required for V1.0
-Restore Factory Defaults|A button on the setup page and on the settings page, each with a confirmation step, that erases all settings and returns the device to first-boot setup.|Planned.<br><br>Required for V1.0
+Configuration|A small, responsive web page built into the device, used from a phone or PC.  Log in with the administrator password to change any setting (see [The web interface](#the-web-interface)).  Plain HTML, CSS and JavaScript with no external dependencies.|Implemented and tested on a development board: login, saving settings, a fixed IP address, changing the password and the lockout after failed logins.<br><br>Required for V1.0
+Initial Setup|On first boot, or when the boot button is pressed within 10 seconds of startup, the device starts its own Wi-Fi access point.  Connect with your phone or PC to enter the Wi-Fi details, a fixed IP address if you want one, and the administrator password.|Implemented and tested on a development board, including the boot button on an already configured device.<br><br>The serial number and setup key are still test values until factory programming is in place.<br><br>Required for V1.0
+Restore Factory Defaults|A button on the setup page and on the settings page that erases all settings and returns the device to first-boot setup.  The button only works once `RESET` has been typed, and the settings page also asks for the administrator password.|Implemented and tested on a development board.<br><br>Required for V1.0
 Modbus Client Interface|This interface allows a client to connect, via the Modbus Switch (see below), to send requests to the inverter.|Complete.<br><br>Baud rate, parity and stop bits are now configurable.
 Modbus Server Interface|This interface connects to the inverter(s) to allow requests from the device itself, or from the Client Interface, to send requests to the inverter.|Complete.<br><br>Baud rate, parity and stop bits are now configurable.
 Modbus Switch|The modbus switch allows multiple clients to access the server-side modbus.  This allows, for example, an S3 Wi-Fi stick to access the inverter and also the internal firmware to access the inverter.|Completed
-Modbus Filter V1|The S3 data logger requires a lot of modbus time every five minutes as it scans for server IDs 1 thru 10.  This causes an unwanted blocking effect on the internal logger.  This component filters out invalid requests and requests for any server ID other than the configured one (1 by default).|Complete.<br><br>The allowed server ID is configurable.  A later version will become a firewall between the data logger and the inverter, for example to block write commands.
+Modbus Filter V1|The S3 data logger requires a lot of modbus time every five minutes as it scans for server IDs 1 thru 10.  This causes an unwanted blocking effect on the internal logger.  This component filters out invalid requests and requests for any server ID other than the configured one (1 by default).|Complete.<br><br>The allowed server ID is configurable, and a changed ID is picked up after the restart.  A later version will become a firewall between the data logger and the inverter, for example to block write commands.
 Inverter Time Setter|The device synchronises its time from an internet time server.  Inverter time drift is checked and corrected as required.|90% Complete.<br><br>The time server and time zone are configurable, and time setting can be switched off.<br><br>Requires further logic to detect transition to and from Daylight Savings Time to correct the inverter's time straight away.
 Sensor MQTT Output|The device consists of an internal logger that requests data from the inverter and produces a JSON output and publishes to an MQTT broker.|80% Complete<br><br>The broker, credentials, topic and polling interval are configurable.<br><br>Requires some further analysis to break out sensor groups into their own topics; for example many systems will not require three phase data, and not all systems have batteries.
 Secure MQTT (TLS)|Connect to the MQTT broker over TLS (`mqtts://`), checking the broker against a CA certificate you supply.|In progress.<br><br>The certificate setting is still to be added.
@@ -139,6 +152,7 @@ Multiple Inverters|Support several inverters on one bus, each with its own Modbu
 MQTT Autodiscovery|Autoconfigure Sensors in Home Assistant|Planned for V2.0
 Backup Wi-Fi|If Wi-Fi #1 fails connect to Wi-Fi #2|Planned for V2.0
 Modbus TCP Server|Allow clients to send commands to the server bus via Modbus TCP|Needs some research.  This would be a great feature to allow inverter configuration.
+
 ## Some Home Assistant Dashboards
 
 ![image](https://github.com/bretmac/halixon-solis-modbus/assets/44399243/88bc1e2e-1869-4257-a952-f50e442fe143)
