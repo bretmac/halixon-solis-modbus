@@ -86,7 +86,7 @@ Restore factory defaults | Erase every setting and return to first-boot setup.  
 
 To use MQTT over TLS, give the broker address as `mqtts://host:8883`.  For a public broker with a certificate from a well-known authority, that is all: the HAL-100 checks it against a built-in list of trusted root certificates.  For your own broker (for example Mosquitto with a certificate you made yourself), also paste the PEM text of the CA certificate that signed it (the part from `-----BEGIN CERTIFICATE-----` to `-----END CERTIFICATE-----`) into the MQTT panel.  If your broker certificate is for an IP address, use that address in the broker field.
 
-Saved passwords are never shown again; the page only says whether one is set.  Saving restarts the device so every change takes effect.  After five wrong passwords in a row, logins are refused for a while.
+Saved passwords are never shown again; the page only says whether one is set.  Saving restarts the device so every change takes effect.  After five wrong passwords in a row, logins are refused for a while.  You are logged out automatically after 15 minutes without use, and a login lasts 8 hours at most, however busy it is.  Up to four logins can be active at once.
 
 <details>
 <summary>All the settings panels</summary>
@@ -135,7 +135,7 @@ Saved passwords are never shown again; the page only says whether one is set.  S
 
 Feature|Description|Status
 ---|---|---
-Configuration|A small, responsive web page built into the device, used from a phone or PC.  Log in with the administrator password to change any setting (see [The web interface](#the-web-interface)).  Plain HTML, CSS and JavaScript with no external dependencies.|Implemented and tested on a development board: login, saving settings, a fixed IP address, changing the password and the lockout after failed logins.<br><br>Required for V1.0
+Configuration|A small, responsive web page built into the device, used from a phone or PC.  Log in with the administrator password to change any setting (see [The web interface](#the-web-interface)).  Plain HTML, CSS and JavaScript with no external dependencies.|Implemented and tested on a development board: login, saving settings, a fixed IP address, changing the password, the lockout after failed logins, and the automatic logout after 15 minutes without use.<br><br>The 8 hour maximum login length is implemented but not yet tested.<br><br>Required for V1.0
 Initial Setup|On first boot, or when the boot button is pressed within 10 seconds of startup, the device starts its own Wi-Fi access point.  Connect with your phone or PC to enter the Wi-Fi details, a fixed IP address if you want one, and the administrator password.|Implemented and tested on a development board, including the boot button on an already configured device.<br><br>The serial number and setup key are still test values until factory programming is in place.<br><br>Required for V1.0
 Restore Factory Defaults|A button on the setup page and on the settings page that erases all settings and returns the device to first-boot setup.  The button only works once `RESET` has been typed, and the settings page also asks for the administrator password.|Implemented and tested on a development board.<br><br>Required for V1.0
 Modbus Client Interface|This interface allows a client to connect, via the Modbus Switch (see below), to send requests to the inverter.|Complete.<br><br>Baud rate, parity and stop bits are now configurable.
